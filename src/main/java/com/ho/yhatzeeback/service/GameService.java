@@ -37,12 +37,12 @@ public class GameService {
 
     public GameRoom createRoom(String name) {
         String randomId = UUID.randomUUID().toString();
-        GameRoom chatRoom = GameRoom.builder()
+        GameRoom gameRoom = GameRoom.builder()
                 .roomId(randomId)
                 .name(name)
                 .build();
-        gameRooms.put(randomId, chatRoom);
-        return chatRoom;
+        gameRooms.put(randomId, gameRoom);
+        return gameRoom;
     }
 
     public <T> void sendMessage(WebSocketSession session, T message) {

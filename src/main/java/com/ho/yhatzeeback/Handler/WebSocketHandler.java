@@ -22,10 +22,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
         log.info("{}", payload);
-        GameMessage chatMessage = objectMapper.readValue(payload, GameMessage.class);
-
-        GameRoom gameRoom = gameService.findRoomById(chatMessage.getRoomId());
-        gameRoom.handlerActions(session, chatMessage, gameService);
+        GameMessage gameMessage = objectMapper.readValue(payload, GameMessage.class);
+        GameRoom gameRoom = gameService.findRoomById(gameMessage.getRoomId());
+        gameRoom.handlerActions(session, gameMessage, gameService);
     }
 
 }

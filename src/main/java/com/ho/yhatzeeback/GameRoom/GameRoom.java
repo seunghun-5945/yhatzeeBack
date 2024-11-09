@@ -21,17 +21,17 @@ public class GameRoom {
         this.name = name;
     }
 
-    public void handlerActions(WebSocketSession session, GameMessage gameMessage, GameService chatService) {
+    public void handlerActions(WebSocketSession session, GameMessage gameMessage, GameService gameService) {
         if (gameMessage.getType().equals(GameMessage.MessageType.ENTER)) {
             sessions.add(session);
             gameMessage.setMessage(gameMessage.getSender() + "님이 입장했습니다.");
         }
-        sendMessage(gameMessage, chatService);
+        sendMessage(gameMessage, gameService);
 
     }
 
-    private <T> void sendMessage(T message, GameService chatService) {
+    private <T> void sendMessage(T message, GameService gameService) {
         sessions.parallelStream()
-                .forEach(session -> chatService.sendMessage(session, message));
+                .forEach(session -> gameService.sendMessage(session, message));
     }
 }
