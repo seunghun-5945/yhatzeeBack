@@ -27,7 +27,7 @@ public class MemberService {
     public String loginMember(String name, String password) {
         Member member = memberRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
-        if (Objects.equals(password, member.getPassword())) {
+        if (!member.getPassword().equals(password)) {
             throw new RuntimeException("Invalid credentials");
         }
         return member.getName();
