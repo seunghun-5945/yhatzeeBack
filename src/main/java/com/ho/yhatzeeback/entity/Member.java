@@ -2,6 +2,7 @@ package com.ho.yhatzeeback.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -18,4 +19,7 @@ public class Member {
     String name;
 
     String password;
+
+    @Builder.Default
+    int score=0;
 }
