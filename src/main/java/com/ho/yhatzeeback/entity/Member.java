@@ -22,4 +22,8 @@ public class Member {
 
     @Builder.Default
     int score=0;
+
+    public void updateScore(int score) {
+        this.score = score;
+    }
 }
